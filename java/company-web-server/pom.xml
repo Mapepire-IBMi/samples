@@ -10,12 +10,12 @@
 
   <name>Company Web Server</name>
   <description>Company web server to manage departments, employees, and sales</description>
-  <url>https://github.com/SanjulaGanepola/company-web-server</url>
+  <url>https://github.com/Mapepire-IBMi/samples/blob/main/java/company-web-server</url>
 
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>https://raw.githubusercontent.com/SanjulaGanepola/company-web-server/main/LICENSE</url>
+      <url>https://raw.githubusercontent.com/Mapepire-IBMi/samples/main/java/company-web-server/LICENSE</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -30,9 +30,9 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git://github.com/SanjulaGanepola/company-web-server.git</connection>
-    <developerConnection>scm:git:ssh://github.com:SanjulaGanepola/company-web-server.git</developerConnection>
-    <url>https://github.com/SanjulaGanepola/company-web-server</url>
+    <connection>scm:git:git://github.com/Mapepire-IBMi/samples.git</connection>
+    <developerConnection>scm:git:ssh://github.com:Mapepire-IBMi/samples.git</developerConnection>
+    <url>https://github.com/Mapepire-IBMi/samples</url>
   </scm>
 
   <properties>
