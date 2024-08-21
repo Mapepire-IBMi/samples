@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Company Server API
+  description: Company web server that demos the Mapepire Java SDK.
+  contact:
+    email: Sanjula.Ganepola@ibm.com
+  license:
+    name: Apache 2.0
+    url: https://github.com/SanjulaGanepola/company-web-server/blob/main/LICENSE
+  version: 0.1.0
+externalDocs:
+  description: GitHub Repository
+  url: https://github.com/SanjulaGanepola/company-web-server
+servers:
+  - url: http://localhost:8080
+    description: Local server
+tags:
+  - name: Database Services
+    description: Database Services provide APIs to manage the database connection.
+  - name: Department Services
+    description: Department Services provide APIs to manage departments.
+  - name: Employee Services
+    description: Employee Services provide APIs to manage departments.
+  - name: Sale Services
+    description: Sale Services provide APIs to manage sales.
+paths:
+  /connect:
+    get:
+      tags:
+        - Database Services
+      summary: Connect to the database.
+      parameters:
+        - name: host
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: port
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: user
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully connected
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+  /tracing:
+    put:
+      tags:
+        - Database Services
+      summary: Toggle database channel data tracing.
+      parameters:
+        - name: enable
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successfully toggled.
+        '500':
+          description: Internal server error
+  /disconnect:
+    delete:
+      tags:
+        - Database Services
+      summary: Disconnect from the database.
+      responses:
+        '200':
+          description: Successfully disconnected
+        '500':
+          description: Internal server error
+  /departments:
+    get:
+      tags:
+        - Department Services
+      summary: Get a list of departments.
+      responses:
+        '200':
+          description: Successfully connected
+        '204':
+          description: No data found
+        '403':
+          description: No connection
+        '500':
+          description: Internal server error
+  /departments/{deptNo}:
+    get:
+      tags:
+        - Department Services
+      summary: Get a department by department number.
+      parameters:
+        - name: deptNo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully connected
+        '204':
+          description: No data found
+        '403':
+          description: No connection
+        '500':
+          description: Internal server error
+  /employees:
+    get:
+      tags:
+        - Employee Services
+      summary: Get a list of employees.
+      responses:
+        '200':
+          description: Successfully connected
+        '204':
+          description: No data found
+        '403':
+          description: No connection
+        '500':
+          description: Internal server error
+  /employees/{empNo}:
+    get:
+      tags:
+        - Employee Services
+      summary: Get an employee by employee number.
+      parameters:
+        - name: empNo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully connected
+        '204':
+          description: No data found
+        '403':
+          description: No connection
+        '500':
+          description: Internal server error
+  /sales:
+    get:
+      tags:
+        - Sale Services
+      summary: Get a list of sales.
+      responses:
+        '200':
+          description: Successfully connected
+        '204':
+          description: No data found
+        '403':
+          description: No connection
+        '500':
+          description: Internal server error
+  /sales/{salesPerson}:
+    get:
+      tags:
+        - Sale Services
+      summary: Get a list of sales associated with a sales person.
+      parameters:
+        - name: salesPerson
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully connected
+        '204':
+          description: No data found
+        '403':
+          description: No connection
+        '500':
+          description: Internal server error
