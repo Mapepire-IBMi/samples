@@ -1,6 +1,7 @@
 package io.github.company.servlets;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,10 @@ public class QueryServlet extends HttpServlet {
                 return;
             }
 
-            QueryResult<Object> result = Database.query(this.sql).get();
+            String pathInfo = req.getPathInfo();
+
+            QueryResult<Object> result = pathInfo == null ? Database.execute(this.sql).get()
+                    : Database.prepareAndExecute(this.sql, Arrays.asList(pathInfo.substring(1))).get();
 
             if (result.getSuccess()) {
                 resp.setStatus(HttpServletResponse.SC_OK);

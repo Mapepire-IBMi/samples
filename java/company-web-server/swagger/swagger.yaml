@@ -12,7 +12,7 @@ externalDocs:
   description: GitHub Repository
   url: https://github.com/Mapepire-IBMi/samples/tree/main/java/company-web-server
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:3000
     description: Local server
 tags:
   - name: Database Services

@@ -1,11 +1,13 @@
 package io.github.company;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 // import io.github.mapapire.Pool;
 import io.github.mapapire.SqlJob;
 // import io.github.mapapire.PoolOptions;
 import io.github.mapapire.types.DaemonServer;
+import io.github.mapapire.types.QueryOptions;
 import io.github.mapapire.types.QueryResult;
 
 public class Database {
@@ -26,9 +28,14 @@ public class Database {
         return job != null;
     }
 
-    public static <T> CompletableFuture<QueryResult<T>> query(String sql) throws Exception {
+    public static <T> CompletableFuture<QueryResult<T>> execute(String sql) throws Exception {
         // return pool.execute(sql);
         return job.execute(sql);
+    }
+
+    public static <T> CompletableFuture<QueryResult<T>> prepareAndExecute(String sql, List<Object> parameters) throws Exception {
+        // return pool.execute(sql);
+        return job.query(sql, new QueryOptions(false, false, parameters)).execute();
     }
 
     public static void disconnect() {

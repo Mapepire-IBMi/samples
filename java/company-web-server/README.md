@@ -20,14 +20,14 @@ Jetty company web server to manage departments, employees, and sales
     mvn clean package
     ```
 
-4. Run the application:
+4. Start the company web server:
 
     ```sh
     cd target
     java -jar company-web-server-1.0-SNAPSHOT.jar
     ```
 
-5. Prepare a web server to launch the Swagger UI:
+5. Start a web server to launch the Swagger UI:
 
     ```sh
     npm install -g http-server
@@ -35,7 +35,7 @@ Jetty company web server to manage departments, employees, and sales
     http-server --cors
     ```
 
-6. Access the Swagger UI at http://localhost:8080 in your browser.
+6. Access the Swagger UI at http://localhost:8080 in the browser.
 
 ## Usage
 
