@@ -10,6 +10,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import io.github.company.servlets.ConnectServlet;
 import io.github.company.servlets.DisconnectServlet;
 import io.github.company.servlets.QueryServlet;
+import io.github.company.servlets.TracingServlet;
 
 public class CompanyServer {
     private static int port = 3000;
@@ -29,13 +30,14 @@ public class CompanyServer {
 
         // Add servlets
         context.addServlet(new ServletHolder(new ConnectServlet()), "/connect");
+        context.addServlet(new ServletHolder(new TracingServlet()), "/tracing");
+        context.addServlet(new ServletHolder(new DisconnectServlet()), "/disconnect");
         context.addServlet(new ServletHolder(new QueryServlet("SELECT * FROM SAMPLE.DEPARTMENT")), "/departments");
         context.addServlet(new ServletHolder(new QueryServlet("SELECT * FROM SAMPLE.DEPARTMENT WHERE DEPTNO = ?")), "/departments/*");
         context.addServlet(new ServletHolder(new QueryServlet("SELECT * FROM SAMPLE.EMPLOYEE")), "/employees");
         context.addServlet(new ServletHolder(new QueryServlet("SELECT * FROM SAMPLE.EMPLOYEE WHERE EMPNO = ?")), "/employees/*");
         context.addServlet(new ServletHolder(new QueryServlet("SELECT * FROM SAMPLE.SALES")), "/sales");
         context.addServlet(new ServletHolder(new QueryServlet("SELECT * FROM SAMPLE.SALES WHERE SALES_PERSON = ?")), "/sales/*");
-        context.addServlet(new ServletHolder(new DisconnectServlet()), "/disconnect");
     }
 
     public void start() throws Exception {

@@ -9,6 +9,7 @@ import io.github.mapapire.SqlJob;
 import io.github.mapapire.types.DaemonServer;
 import io.github.mapapire.types.QueryOptions;
 import io.github.mapapire.types.QueryResult;
+import io.github.mapapire.types.ServerTraceLevel;
 
 public class Database {
     // private static Pool pool;
@@ -36,6 +37,10 @@ public class Database {
     public static <T> CompletableFuture<QueryResult<T>> prepareAndExecute(String sql, List<Object> parameters) throws Exception {
         // return pool.execute(sql);
         return job.query(sql, new QueryOptions(false, false, parameters)).execute();
+    }
+
+    public static void enableLocalTracing(ServerTraceLevel level) {
+        // job.setTraceLevel(level).get();
     }
 
     public static void disconnect() {

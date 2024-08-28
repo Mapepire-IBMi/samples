@@ -61,16 +61,17 @@ paths:
     put:
       tags:
         - Database Services
-      summary: Toggle database channel data tracing.
+      summary: Set server trace level.
       parameters:
-        - name: enable
+        - name: level
           in: query
           required: true
           schema:
-            type: boolean
+            type: string
+            enum: ['OFF', 'ON', 'ERRORS', 'DATASTREAM']
       responses:
         '200':
-          description: Successfully toggled.
+          description: Successfully set server trace level.
         '500':
           description: Internal server error
   /disconnect:

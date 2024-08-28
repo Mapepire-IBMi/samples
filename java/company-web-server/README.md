@@ -41,7 +41,7 @@ Jetty company web server to manage departments, employees, and sales
 
 1. Connect to a database using the `/connect` endpoint.
 
-2. Toggle database channel data tracing using the `tracing` endpoint.
+2. Set the server trace level using the `/tracing` endpoint.
 
 3. Experiment with the various endpoints:
 
