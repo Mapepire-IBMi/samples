@@ -26,11 +26,11 @@ Simple demo application of using the Mapepire Java client SDK
 > [!NOTE]
 > Replace `<demo-type>` in the above command with one of the demo types listed at the bottom of the page
 
-| Demo Type             | Description                                               |
-| --------------------- | --------------------------------------------------------- |
-| `--sql`               | Execute a simple SQL query                                |
-| `--prepareStatement`  | Prepare SQL statement with parameters and execute         |
-| `--clCommand`         | Execute a simple CL command                               |
-| `--paginatingResults` | Fetch specific number of rows and paginate results        |
-| `--pooling`           | Execute a simple SQL query from a job pool                |
-| `--jdbcOptions`       | Execute a simple SQL query with a job having JDBC options |
+| Demo Type             | Description                                          |
+| --------------------- | ---------------------------------------------------- |
+| `--sql`               | Execute a SQL query                                  |
+| `--prepareStatement`  | Execute a prepared SQL query with parameters         |
+| `--clCommand`         | Execute a CL command                                 |
+| `--paginatingResults` | Fetch a specific number of rows and paginate results |
+| `--pooling`           | Execute a SQL query from a job pool                  |
+| `--jdbcOptions`       | Execute a SQL query with a job having JDBC options   |
