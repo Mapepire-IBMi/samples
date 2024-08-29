@@ -23,8 +23,7 @@ Simple demo application of using the Mapepire Java client SDK
     java -jar simple-app-1.0-SNAPSHOT-jar-with-dependencies.jar <demo-type>
     ```
 
-    > [!NOTE]
-    > Replace `<demo-type>` in the above command with one of the demo types listed below.
+    Replace `<demo-type>` in the above command with one of the demo types listed below.
 
     | Demo Type             | Description                                          |
     | --------------------- | ---------------------------------------------------- |
