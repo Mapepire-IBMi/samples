@@ -4,44 +4,57 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Properties;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import io.github.mapapire.Pool;
-import io.github.mapapire.Query;
-import io.github.mapapire.SqlJob;
-import io.github.mapapire.types.DaemonServer;
-import io.github.mapapire.types.JDBCOptions;
-import io.github.mapapire.types.QueryOptions;
-import io.github.mapapire.types.QueryResult;
-import io.github.mapapire.types.jdbcOptions.Naming;
+import io.github.mapepire_ibmi.Pool;
+import io.github.mapepire_ibmi.Query;
+import io.github.mapepire_ibmi.SqlJob;
+import io.github.mapepire_ibmi.types.DaemonServer;
+import io.github.mapepire_ibmi.types.JDBCOptions;
+import io.github.mapepire_ibmi.types.PoolOptions;
+import io.github.mapepire_ibmi.types.QueryOptions;
+import io.github.mapepire_ibmi.types.QueryResult;
+import io.github.mapepire_ibmi.types.jdbcOptions.Naming;
 
 public final class App {
     public static void main(String[] args) throws Exception {
-        if (args[0] == "--sql") {
-            QueryResult<Object> result = runSqlDemo();
-            outputResults(result);
-        } else if (args[0] == "--prepareStatement") {
-            QueryResult<Object> result = prepareStatementDemo();
-            outputResults(result);
-        } else if (args[0] == "--clCommand") {
-            QueryResult<Object> result = clCommandDemo();
-            outputResults(result);
-        } else if (args[0] == "--paginatingResults") {
-            QueryResult<Object> result = paginatingResultsDemo();
-            outputResults(result);
-        } else if (args[0] == "--pooling") {
-            QueryResult<Object> result = poolingDemo();
-            outputResults(result);
-        } else if (args[0] == "--jdbcOptions") {
-            QueryResult<Object> result = jdbcOptionsDemo();
-            outputResults(result);
-        } else {
-            System.out.println("Invalid argument");
+        if (args.length < 1) {
+            System.out.println("No argument provided");
+            return;
+        }
+
+        QueryResult<Object> result;
+        switch (args[0]) {
+            case "--sql":
+                result = runSqlDemo();
+                outputResults(result);
+                break;
+            case "--prepareStatement":
+                result = prepareStatementDemo();
+                outputResults(result);
+                break;
+            case "--clCommand":
+                result = clCommandDemo();
+                outputResults(result);
+                break;
+            case "--paginatingResults":
+                result = paginatingResultsDemo();
+                outputResults(result);
+                break;
+            case "--pooling":
+                result = poolingDemo();
+                outputResults(result);
+                break;
+            case "--jdbcOptions":
+                result = jdbcOptionsDemo();
+                outputResults(result);
+                break;
+            default:
+                System.out.println("Invalid argument");
         }
     }
 
@@ -72,7 +85,7 @@ public final class App {
 
         // Initialize and execute query
         Query<Object> query = job.query("SELECT * FROM SAMPLE.DEPARTMENT");
-        QueryResult<Object> result = query.execute(3).get();
+        QueryResult<Object> result = query.execute().get();
 
         // Close query and job
         query.close().get();
@@ -88,10 +101,9 @@ public final class App {
         job.connect(creds).get();
 
         // Initialize and execute query
-        QueryOptions options = new QueryOptions(false, false,
-                Arrays.asList("TABLE_NAME", "LONG_COMMENT", "CONSTRAINT_NAME"));
-        Query<Object> query = job.query("SELECT * FROM SAMPLE.SYSCOLUMNS WHERE COLUMN_NAME IN (?, ?, ?)", options);
-        QueryResult<Object> result = query.execute(30).get();
+        QueryOptions options = new QueryOptions(false, false, Arrays.asList("A00"));
+        Query<Object> query = job.query("SELECT * FROM SAMPLE.DEPARTMENT WHERE ADMRDEPT = ?", options);
+        QueryResult<Object> result = query.execute().get();
 
         // Close query and job
         query.close().get();
@@ -124,10 +136,10 @@ public final class App {
         job.connect(creds).get();
 
         // Execute query and fetch 10 rows
-        Query<Object> query = job.query("SELECT * FROM SAMPLE.DEPARTMENT");
+        Query<Object> query = job.query("SELECT * FROM SAMPLE.EMPLOYEE");
         QueryResult<Object> result = query.execute(10).get();
 
-        // Continuously fetch 50 more rows until all all rows have been returned
+        // Continuously fetch 10 more rows until all all rows have been returned
         while (!result.getIsDone()) {
             result = query.fetchMore(50).get();
         }
@@ -147,10 +159,8 @@ public final class App {
         pool.init().get();
 
         // Initialize and execute query
-        QueryOptions options = new QueryOptions(false, false,
-                Arrays.asList("TABLE_NAME", "LONG_COMMENT", "CONSTRAINT_NAME"));
-        Query<Object> query = pool.query("SELECT * FROM SAMPLE.SYSCOLUMNS WHERE COLUMN_NAME IN (?, ?, ?)", options);
-        QueryResult<Object> result = query.execute(30).get();
+        Query<Object> query = pool.query("SELECT * FROM SAMPLE.DEPARTMENT");
+        QueryResult<Object> result = query.execute().get();
 
         // Close query and job
         query.close().get();
@@ -171,8 +181,8 @@ public final class App {
         job.connect(creds).get();
 
         // Initialize and execute query
-        Query<Object> query = job.query("SELECT * FROM DEPARTMENT");
-        QueryResult<Object> result = query.execute(3).get();
+        Query<Object> query = job.query("SELECT * FROM SALES");
+        QueryResult<Object> result = query.execute().get();
 
         // Close query and job
         query.close().get();

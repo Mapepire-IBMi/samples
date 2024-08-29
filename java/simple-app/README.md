@@ -20,11 +20,11 @@ Simple demo application of using the Mapepire Java client SDK
 
     ```sh
     cd target
-    java -jar simple-app-1.0-SNAPSHOT.jar <demo-type>
+    java -jar target/simple-app-1.0-SNAPSHOT-jar-with-dependencies.jar <demo-type>
     ```
 
 > [!NOTE]
-> Replace `<demo-type>` in the above command with one of the demo types listed at the bottom of the page
+> Replace `<demo-type>` in the above command with one of the demo types listed below.
 
 | Demo Type             | Description                                          |
 | --------------------- | ---------------------------------------------------- |
