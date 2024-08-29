@@ -20,7 +20,7 @@ Simple demo application of using the Mapepire Java client SDK
 
     ```sh
     cd target
-    java -jar target/simple-app-1.0-SNAPSHOT-jar-with-dependencies.jar <demo-type>
+    java -jar simple-app-1.0-SNAPSHOT-jar-with-dependencies.jar <demo-type>
     ```
 
 > [!NOTE]
