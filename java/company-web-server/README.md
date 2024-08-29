@@ -24,7 +24,7 @@ Jetty company web server to manage departments, employees, and sales
 
     ```sh
     cd target
-    java -jar company-web-server-1.0-SNAPSHOT.jar
+    java -jar company-web-server-1.0-SNAPSHOT-jar-with-dependencies.jar
     ```
 
 5. Start a web server to launch the Swagger UI:

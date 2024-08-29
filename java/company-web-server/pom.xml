@@ -45,6 +45,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>io.github.mapepire-ibmi</groupId>
+      <artifactId>mapepire-sdk</artifactId>
+      <version>0.0.4</version>
+    </dependency>
+    <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-server</artifactId>
       <version>9.4.55.v20240627</version>
@@ -58,11 +63,6 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.github.mapepire-ibmi</groupId>
-      <artifactId>mapepire-sdk</artifactId>
-      <version>0.0.3</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -89,6 +89,29 @@
                 </requireMavenVersion>
               </rules>
               <fail>true</fail>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <archive>
+                <manifest>
+                  <addClasspath>true</addClasspath>
+                  <mainClass>io.github.company.App</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
             </configuration>
           </execution>
         </executions>

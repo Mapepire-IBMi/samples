@@ -10,13 +10,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import io.github.company.Database;
-import io.github.mapapire.types.ServerTraceLevel;
+import io.github.mapepire_ibmi.types.ServerTraceLevel;
 
 public class TracingServlet extends HttpServlet {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         ObjectNode jsonResponse = objectMapper.createObjectNode();

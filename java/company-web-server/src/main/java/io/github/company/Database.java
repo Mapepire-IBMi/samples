@@ -3,48 +3,41 @@ package io.github.company;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-// import io.github.mapapire.Pool;
-import io.github.mapapire.SqlJob;
-// import io.github.mapapire.PoolOptions;
-import io.github.mapapire.types.DaemonServer;
-import io.github.mapapire.types.QueryOptions;
-import io.github.mapapire.types.QueryResult;
-import io.github.mapapire.types.ServerTraceLevel;
+import io.github.mapepire_ibmi.Pool;
+import io.github.mapepire_ibmi.types.DaemonServer;
+import io.github.mapepire_ibmi.types.PoolOptions;
+import io.github.mapepire_ibmi.types.QueryOptions;
+import io.github.mapepire_ibmi.types.QueryResult;
+import io.github.mapepire_ibmi.types.ServerTraceLevel;
 
 public class Database {
-    // private static Pool pool;
-    private static SqlJob job;
+    private static Pool pool;
 
     public static void connect(String host, int port, String user, String password) throws Exception {
         DaemonServer creds = new DaemonServer(host, port, user, password, true, "");
-        // pool = new Pool(new PoolOptions(creds, 5, 1));
-        // pool.waitForJob().get();
-        // pool.init().get();
-
-        job = new SqlJob();
-        job.connect(creds).get();
+        pool = new Pool(new PoolOptions(creds, 5, 1));
+        pool.waitForJob().get();
+        pool.init().get();
     }
 
-    public static boolean isConnected() {
-        return job != null;
+    public static boolean getReadyJob() {
+        return pool.getReadyJob() != null;
     }
 
     public static <T> CompletableFuture<QueryResult<T>> execute(String sql) throws Exception {
-        // return pool.execute(sql);
-        return job.execute(sql);
+        return pool.execute(sql);
     }
 
-    public static <T> CompletableFuture<QueryResult<T>> prepareAndExecute(String sql, List<Object> parameters) throws Exception {
-        // return pool.execute(sql);
-        return job.query(sql, new QueryOptions(false, false, parameters)).execute();
+    public static <T> CompletableFuture<QueryResult<T>> prepareAndExecute(String sql, List<Object> parameters)
+            throws Exception {
+        return pool.execute(sql, new QueryOptions(false, false, parameters));
     }
 
-    public static void enableLocalTracing(ServerTraceLevel level) {
-        // job.setTraceLevel(level).get();
+    public static void setTraceLevel(ServerTraceLevel level) throws Exception {
+        pool.getReadyJob().setTraceLevel(level).get();
     }
 
     public static void disconnect() {
-        // pool.end();
-        job.close();
+        pool.end();
     }
 }

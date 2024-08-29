@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import io.github.company.Database;
-import io.github.mapapire.types.QueryResult;
+import io.github.mapepire_ibmi.types.QueryResult;
 
 public class QueryServlet extends HttpServlet {
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -29,7 +29,7 @@ public class QueryServlet extends HttpServlet {
         ObjectNode jsonResponse = objectMapper.createObjectNode();
 
         try {
-            if (!Database.isConnected()) {
+            if (!Database.getReadyJob()) {
                 resp.setStatus(HttpServletResponse.SC_OK);
                 jsonResponse.put("error", "No connection.");
                 resp.getWriter().write(objectMapper.writeValueAsString(jsonResponse));
