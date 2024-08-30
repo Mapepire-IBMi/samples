@@ -6,15 +6,24 @@ Simple demo application of using the Mapepire Java client SDK
 
 1. Ensure the [Mapepire Server](https://mapepire-ibmi.github.io/guides/sysadmin) is installed and running on the IBM i.
 
-2. Clone the repository and build the application:
+2. Clone the repository:
 
     ```sh
     git clone https://github.com/Mapepire-IBMi/samples.git
     cd java/simple-app
+    ```
+
+3. Copy and fill out the configuration properties:
+
+    ```sh
+    cp src/main/resources/config.properties.sample src/main/resources/config.properties
+    ```
+
+4. Build the application
+
+    ```sh
     mvn clean package
     ```
-3. Copy and fill out the configuration properties
-    ``` cp config.properties.sample config.properties```    
 
 ## Usage
 
