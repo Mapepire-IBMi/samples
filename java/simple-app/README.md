@@ -13,6 +13,8 @@ Simple demo application of using the Mapepire Java client SDK
     cd java/simple-app
     mvn clean package
     ```
+3. Copy and fill out the configuration properties
+    ``` cp config.properties.sample config.properties```    
 
 ## Usage
 
