@@ -84,7 +84,7 @@ public final class App {
         job.connect(creds).get();
 
         // Initialize and execute query
-        Query<Object> query = job.query("SELECT * FROM SAMPLE.DEPARTMENT");
+        Query query = job.query("SELECT * FROM SAMPLE.DEPARTMENT");
         QueryResult<Object> result = query.execute().get();
 
         // Close query and job
@@ -102,7 +102,7 @@ public final class App {
 
         // Initialize and execute query
         QueryOptions options = new QueryOptions(false, false, Arrays.asList("A00"));
-        Query<Object> query = job.query("SELECT * FROM SAMPLE.DEPARTMENT WHERE ADMRDEPT = ?", options);
+        Query query = job.query("SELECT * FROM SAMPLE.DEPARTMENT WHERE ADMRDEPT = ?", options);
         QueryResult<Object> result = query.execute().get();
 
         // Close query and job
@@ -119,7 +119,7 @@ public final class App {
         job.connect(creds).get();
 
         // Initialize and execute query
-        Query<Object> query = job.clCommand("CRTLIB LIB(MYLIB1) TEXT('My cool library')");
+        Query query = job.clCommand("CRTLIB LIB(MYLIB1) TEXT('My cool library')");
         QueryResult<Object> result = query.execute().get();
 
         // Close query and job
@@ -136,7 +136,7 @@ public final class App {
         job.connect(creds).get();
 
         // Execute query and fetch 10 rows
-        Query<Object> query = job.query("SELECT * FROM SAMPLE.EMPLOYEE");
+        Query query = job.query("SELECT * FROM SAMPLE.EMPLOYEE");
         QueryResult<Object> result = query.execute(10).get();
 
         // Continuously fetch 10 more rows until all all rows have been returned
@@ -159,10 +159,10 @@ public final class App {
         pool.init().get();
 
         // Initialize and execute query
-        Query<Object> query = pool.query("SELECT * FROM SAMPLE.DEPARTMENT");
+        Query query = pool.query("SELECT * FROM SAMPLE.DEPARTMENT");
         QueryResult<Object> result = query.execute().get();
 
-        // Close query and job
+        // Close query and pool
         query.close().get();
         pool.end();
 
@@ -181,7 +181,7 @@ public final class App {
         job.connect(creds).get();
 
         // Initialize and execute query
-        Query<Object> query = job.query("SELECT * FROM SALES");
+        Query query = job.query("SELECT * FROM SALES");
         QueryResult<Object> result = query.execute().get();
 
         // Close query and job
