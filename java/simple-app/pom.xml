@@ -3,19 +3,19 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.github.company</groupId>
-  <artifactId>company-web-server</artifactId>
+  <groupId>io.github.simple</groupId>
+  <artifactId>simple-app</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Company Web Server</name>
-  <description>Jetty company web server to manage departments, employees, and sales</description>
-  <url>https://github.com/Mapepire-IBMi/samples/blob/main/java/company-web-server</url>
+  <name>Simple Application</name>
+  <description>Simple demo application of using the Mapepire Java client SDK</description>
+  <url>https://github.com/Mapepire-IBMi/samples/blob/main/java/simple-app</url>
 
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>https://raw.githubusercontent.com/Mapepire-IBMi/samples/main/java/company-web-server/LICENSE</url>
+      <url>https://raw.githubusercontent.com/Mapepire-IBMi/samples/main/java/simple-app/LICENSE</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -48,21 +48,6 @@
       <groupId>io.github.mapepire-ibmi</groupId>
       <artifactId>mapepire-sdk</artifactId>
       <version>0.0.4</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-server</artifactId>
-      <version>9.4.55.v20240627</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-servlet</artifactId>
-      <version>9.4.55.v20240627</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -106,7 +91,7 @@
               <archive>
                 <manifest>
                   <addClasspath>true</addClasspath>
-                  <mainClass>io.github.company.App</mainClass>
+                  <mainClass>io.github.simple.App</mainClass>
                 </manifest>
               </archive>
               <descriptorRefs>

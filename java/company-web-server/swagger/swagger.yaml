@@ -12,7 +12,7 @@ externalDocs:
   description: GitHub Repository
   url: https://github.com/Mapepire-IBMi/samples/tree/main/java/company-web-server
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:3000
     description: Local server
 tags:
   - name: Database Services
@@ -61,16 +61,17 @@ paths:
     put:
       tags:
         - Database Services
-      summary: Toggle database channel data tracing.
+      summary: Set server trace level.
       parameters:
-        - name: enable
+        - name: level
           in: query
           required: true
           schema:
-            type: boolean
+            type: string
+            enum: ['OFF', 'ON', 'ERRORS', 'DATASTREAM']
       responses:
         '200':
-          description: Successfully toggled.
+          description: Successfully set server trace level.
         '500':
           description: Internal server error
   /disconnect:

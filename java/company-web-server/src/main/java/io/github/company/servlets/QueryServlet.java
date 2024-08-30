@@ -1,6 +1,7 @@
 package io.github.company.servlets;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import io.github.company.Database;
-import io.github.mapapire.types.QueryResult;
+import io.github.mapepire_ibmi.types.QueryResult;
 
 public class QueryServlet extends HttpServlet {
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -28,14 +29,17 @@ public class QueryServlet extends HttpServlet {
         ObjectNode jsonResponse = objectMapper.createObjectNode();
 
         try {
-            if (!Database.isConnected()) {
+            if (!Database.getReadyJob()) {
                 resp.setStatus(HttpServletResponse.SC_OK);
                 jsonResponse.put("error", "No connection.");
                 resp.getWriter().write(objectMapper.writeValueAsString(jsonResponse));
                 return;
             }
 
-            QueryResult<Object> result = Database.query(this.sql).get();
+            String pathInfo = req.getPathInfo();
+
+            QueryResult<Object> result = pathInfo == null ? Database.execute(this.sql).get()
+                    : Database.prepareAndExecute(this.sql, Arrays.asList(pathInfo.substring(1))).get();
 
             if (result.getSuccess()) {
                 resp.setStatus(HttpServletResponse.SC_OK);
