@@ -1,7 +1,9 @@
 # Python Sample Projects
 
-These sample projects leverage the [mapepire-python](https://github.com/Mapepire-IBMi/mapepire-python) client SDK:
+These sample projects leverage the [mapepire-python](https://github.com/Mapepire-IBMi/mapepire-python) client:
 
-* `<project-1>`: `<project-1-description>`
-* `<project-2>`: `<project-2-description>`
-* `<project-3>`: `<project-3-description>`
+- [sample notebook](./simple-example.ipynb) - A simple example of how to use the `mapepire-python` client in a Jupyter notebook.
+
+Python client links:
+ - [docs](https://mapepire-ibmi.github.io/guides/usage/python/)
+ - [github](https://github.com/Mapepire-IBMi/mapepire-python)
