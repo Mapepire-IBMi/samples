@@ -9,7 +9,7 @@ Jetty company web server to manage departments, employees, and sales
 2. Create the `SAMPLE` schema on the IBM i:
 
     ```sql
-    QSYS.CREATE_SQL_SAMPLE('sample')
+    CALL QSYS.CREATE_SQL_SAMPLE ('SAMPLE')
     ```
 
 3. Clone the repository and build the application:
