@@ -14,7 +14,7 @@ public class Database {
     private static Pool pool;
 
     public static void connect(String host, int port, String user, String password) throws Exception {
-        DaemonServer creds = new DaemonServer(host, port, user, password, true, "");
+        DaemonServer creds = new DaemonServer(host, port, user, password, false);
         pool = new Pool(new PoolOptions(creds, 5, 1));
         pool.waitForJob().get();
         pool.init().get();

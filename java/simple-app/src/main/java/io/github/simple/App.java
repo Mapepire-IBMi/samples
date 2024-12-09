@@ -74,7 +74,7 @@ public final class App {
         String password = properties.getProperty("IBMI_PASSWORD");
         int port = Integer.parseInt(properties.getProperty("IBMI_PORT"));
 
-        return new DaemonServer(host, port, user, password, true, "");
+        return new DaemonServer(host, port, user, password, false);
     }
 
     private static QueryResult<Object> runSqlDemo() throws Exception {
