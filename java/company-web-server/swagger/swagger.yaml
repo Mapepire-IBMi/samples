@@ -49,6 +49,7 @@ paths:
           in: query
           required: true
           schema:
+            format: password
             type: string
       responses:
         '200':
