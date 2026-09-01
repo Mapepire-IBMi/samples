@@ -1,0 +1,7 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "files.insertFinalNewline": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always"
+    }
+}
