@@ -11,7 +11,7 @@ Simple demo application of using the [Mapepire JDBC driver](https://github.com/M
     ```sh
     git clone https://github.com/Mapepire-IBMi/mapepire-jdbc.git
     cd mapepire-jdbc
-    mvn install -DskipTests
+    mvn install -DskipTests -Dgpg.skip=true
     ```
 
 3. Clone this repository:
